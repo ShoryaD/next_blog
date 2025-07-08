@@ -5,20 +5,20 @@ import { BreadcrumbWithCustomSeparator } from "@/components/Breadcrumb";
 import { CustomMDX } from "@/components/mdx";
 import { notFound } from "next/navigation";
 
-export async function generateStaticParams() {
-  let posts = await getBlogPosts();
+export function generateStaticParams() {
+  let posts = getBlogPosts();
   return posts.map((post) => ({
     slug: post.slug,
     category: post.metadata.category,
   }));
 }
 
-export default async function Page({
+export default function Page({
   params,
 }: {
   params: { category: string; slug: string };
 }) {
-  let posts = await getBlogPosts();
+  let posts = getBlogPosts();
   let post = posts.find((post) => post.slug === params.slug);
   if (!post) {
     notFound();
