@@ -5,7 +5,7 @@ import { BreadcrumbWithCustomSeparator } from "@/components/Breadcrumb";
 import { CustomMDX } from "@/components/mdx";
 import { notFound } from "next/navigation";
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   let posts = getBlogPosts();
 
   return posts.map((post) => ({
@@ -14,11 +14,11 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function Page({
-  params,
-}: {
+type PageProps = {
   params: { category: string; slug: string };
-}) {
+};
+
+export default function Page({ params }: PageProps) {
   let post = getBlogPosts().find((post) => post.slug === params.slug);
   if (!post) {
     notFound();
