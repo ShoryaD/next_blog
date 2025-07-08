@@ -7,18 +7,17 @@ import { notFound } from "next/navigation";
 
 export function generateStaticParams() {
   let posts = getBlogPosts();
-
   return posts.map((post) => ({
     slug: post.slug,
     category: post.metadata.category,
   }));
 }
 
-type PageProps = {
+export default function Page({
+  params,
+}: {
   params: { category: string; slug: string };
-};
-
-export default function Page({ params }: PageProps) {
+}) {
   let post = getBlogPosts().find((post) => post.slug === params.slug);
   if (!post) {
     notFound();
