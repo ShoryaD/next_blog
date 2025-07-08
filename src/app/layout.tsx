@@ -24,7 +24,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} antialiased`}
       >
-        <ThemeProvider attribute="class" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
         <main className="flex-1">
           {children}
         </main>
